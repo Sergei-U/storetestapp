@@ -8,5 +8,6 @@ import ru.usov.storetestapp.Entity.User;
  *
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, String> {
+    User findByName(String name);
 }

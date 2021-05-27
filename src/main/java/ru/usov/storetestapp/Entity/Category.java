@@ -1,10 +1,14 @@
 package ru.usov.storetestapp.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
@@ -28,4 +32,12 @@ public class Category {
     @Column(name = "DESCRIPTION")
     @ApiModelProperty(value = "category description")
     private String description;
+
+    @Column(updatable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonView(Views.FullCategory.class)
+    private LocalDateTime creationDate;
+
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Prod> prodList;
 }

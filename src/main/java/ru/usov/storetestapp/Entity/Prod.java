@@ -1,10 +1,13 @@
 package ru.usov.storetestapp.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -23,8 +26,9 @@ public class Prod {
     private Long id;
 
 
-    @OneToMany(mappedBy = "id")
+    @OneToOne
     @ApiModelProperty(value = "product category")
+    @Column(name = "category_id")
     private Category category;
 
     @Column(name = "IMG")
@@ -46,4 +50,9 @@ public class Prod {
     @Column(name = "QUANTITY")
     @ApiModelProperty(value = "product quantity")
     private int quantity;
+
+    @Column(updatable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonView(Views.FullProduct.class)
+    private LocalDateTime creationDate;
 }

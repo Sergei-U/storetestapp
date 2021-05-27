@@ -1,0 +1,10 @@
+insert into category(id, name, descriprion) values ('1', 'ПО', 'обобщённое название предметов быта, используемых для приготовления, приёма и хранения пищи');
+insert into category(id, name, descriprion) values ('2', 'автомобильные товары', 'товары для автомобилей');
+insert into category(id, name, descriprion) values ('3', 'Аксессуары для волос', 'товары для волос');
+insert into category(id, name, descriprion) values ('4', 'аксессуары для обуви', 'товары для обуви');
+insert into category(id, name, descriprion) values ('5', 'Белье', 'разное белье');
+insert into category(id, name, descriprion) values ('6', 'бытовая техника', 'домашняя техника');
+insert into category(id, name, descriprion) values ('7', 'дача', 'товары для дачи');
+insert into category(id, name, descriprion) values ('8', 'товары для дома', 'товары для дома');
+insert into category(id, name, descriprion) values ('9', 'товары для дачи', 'товары для дачи');
+insert into category(id, name, descriprion) values ('10', 'товары для здоровья', 'товары для здоровья');
