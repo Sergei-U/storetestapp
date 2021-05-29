@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.usov.storetestapp.Entity.Prod;
+import ru.usov.storetestapp.Entity.Products;
 import ru.usov.storetestapp.Entity.Views;
 import ru.usov.storetestapp.Repository.ProductRepository;
 
@@ -24,34 +24,34 @@ public class ProductController {
 
     @GetMapping
     @JsonView(Views.IdName.class)
-    public List<Prod> list() {
+    public List<Products> list() {
         return productRepository.findAll();
     }
 
     @GetMapping("{id}")
     @JsonView(Views.FullProduct.class)
-    public Prod getOne(@PathVariable("id") Prod prod) {
-        return prod;
+    public Products getOne(@PathVariable("id") Products products) {
+        return products;
     }
 
     @PostMapping
-    public Prod create(@RequestBody Prod prod) {
-        prod.setCreationDate(LocalDateTime.now());
-        return productRepository.save(prod);
+    public Products create(@RequestBody Products products) {
+        products.setCreationDate(LocalDateTime.now());
+        return productRepository.save(products);
     }
 
     @PutMapping("{id}")
-    public Prod update(
-            @PathVariable("id") Prod prodFromDb,
-            @RequestBody Prod prod
+    public Products update(
+            @PathVariable("id") Products productsFromDb,
+            @RequestBody Products products
     ) {
-        BeanUtils.copyProperties(prod, prodFromDb, "id");
+        BeanUtils.copyProperties(products, productsFromDb, "id");
 
-        return productRepository.save(prodFromDb);
+        return productRepository.save(productsFromDb);
     }
 
     @DeleteMapping("{id}")
-    public void delete(@PathVariable("id") Prod prod) {
-        productRepository.delete(prod);
+    public void delete(@PathVariable("id") Products products) {
+        productRepository.delete(products);
     }
 }

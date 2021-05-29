@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,8 +18,8 @@ import java.util.List;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "CATEGORY")
-public class Category {
+@Table(name = "Categores")
+public class Category implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +27,7 @@ public class Category {
     @ApiModelProperty(value = "category ID")
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "category_NAME", unique = true)
     @ApiModelProperty(value = "category Name")
     private String name;
 
@@ -38,6 +40,7 @@ public class Category {
     @JsonView(Views.FullCategory.class)
     private LocalDateTime creationDate;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Prod> prodList;
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Products> productsList = new ArrayList<>();
 }

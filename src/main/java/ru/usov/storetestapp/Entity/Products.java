@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
@@ -15,8 +17,8 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "PRODUCT")
-public class Prod {
+@Table(name = "PRODUCTS")
+public class Products implements Serializable {
 
 
     @Id
@@ -26,22 +28,17 @@ public class Prod {
     private Long id;
 
 
-    @OneToOne
-    @ApiModelProperty(value = "product category")
-    @Column(name = "category_id")
-    private Category category;
-
-    @Column(name = "IMG")
-    @ApiModelProperty(value = "URL for Image product")
-    private String img;
-
-    @Column(name = "NAME")
+    @Column(name = "PRODUCT_NAME", unique = true)
     @ApiModelProperty(value = "product name")
     private String name;
 
     @Column(name = "DESCRIPTION")
     @ApiModelProperty(value = "product description")
     private String description;
+
+    @Column(name = "IMG")
+    @ApiModelProperty(value = "URL for Image product")
+    private String img;
 
     @Column(name = "PRICE")
     @ApiModelProperty(value = "product price")
@@ -55,4 +52,9 @@ public class Prod {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonView(Views.FullProduct.class)
     private LocalDateTime creationDate;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "products_id", nullable = false)
+    @ApiModelProperty(value = "Список категорий товара")
+    private Category categories;
 }
