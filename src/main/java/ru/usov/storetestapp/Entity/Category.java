@@ -40,7 +40,10 @@ public class Category implements Serializable {
     @JsonView(Views.FullCategory.class)
     private LocalDateTime creationDate;
 
-    @OneToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Products> productsList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "Categores",fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Products.class)
+    @JoinColumn(name = "categores_id", nullable = false, referencedColumnName = "ID")
+    @ApiModelProperty(value = "Список продуктов входящих в категорию")
+    private List<Products> productsList;
+
 }

@@ -1,13 +1,3 @@
-CREATE TABLE USR
-(
-    ID       VARCHAR(300) PRIMARY KEY NOT NULL,
-    usr_name VARCHAR(256),
-    userpic  VARCHAR(256),
-    email    VARCHAR(256),
-    gender   VARCHAR(256),
-    locale   VARCHAR(256)
-);
-
 CREATE TABLE PRODUCTS
 (
     ID           BIGINT PRIMARY KEY NOT NULL,
@@ -25,9 +15,26 @@ CREATE TABLE Categores
     ID            BIGINT PRIMARY KEY NOT NULL,
     category_NAME VARCHAR(300) unique,
     description   VARCHAR(500),
-    creationDate  DATE
+    creationDate  DATE,
+    products_id bigint references PRODUCTS(ID)
 );
 
+create table product_category
+(
+    id               bigint primary key not null,
+    products_id       bigint references PRODUCTS (id),
+    categores_id      bigint references Categores (id)
+);
+
+CREATE TABLE USR
+(
+    ID       VARCHAR(300) PRIMARY KEY NOT NULL,
+    usr_name VARCHAR(256),
+    userpic  VARCHAR(256),
+    email    VARCHAR(256),
+    gender   VARCHAR(256),
+    locale   VARCHAR(256)
+);
 
 CREATE TABLE spring_session
 (
@@ -64,11 +71,4 @@ CREATE TABLE spring_session_attributes
         PRIMARY KEY (session_primary_id, attribute_name)
 );
 
-create table product_category
-(
-    id               bigint primary key not null,
-    products_id       bigint references PRODUCTS (id),
-    categores_id      bigint references Categores (id),
-    amount           bigint             not null,
-    payment_schedule varchar(2048)
-)
+

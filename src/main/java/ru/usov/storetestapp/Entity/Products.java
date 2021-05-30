@@ -53,8 +53,8 @@ public class Products implements Serializable {
     @JsonView(Views.FullProduct.class)
     private LocalDateTime creationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "products_id", nullable = false)
+    @OneToMany(mappedBy = "Products", fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Category.class)
+    @JoinColumn(name = "products_id", nullable = false, referencedColumnName = "ID")
     @ApiModelProperty(value = "Список категорий товара")
-    private Category categories;
+    private List<Category> categories;
 }

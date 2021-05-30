@@ -24,7 +24,4 @@ public class CategoryProduct {
     @JoinColumn(name = "Categores_id")
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
-
-    @Column(name = "AMOUNT")
-    private BigDecimal amount;
 }
