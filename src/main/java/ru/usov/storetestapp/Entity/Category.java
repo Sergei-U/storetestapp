@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,8 +40,7 @@ public class Category implements Serializable {
     private LocalDateTime creationDate;
 
 
-    @OneToMany(mappedBy = "Categores",fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Products.class)
-    @JoinColumn(name = "categores_id", nullable = false, referencedColumnName = "ID")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Products.class)
     @ApiModelProperty(value = "Список продуктов входящих в категорию")
     private List<Products> productsList;
 
