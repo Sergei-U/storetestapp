@@ -17,9 +17,23 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
 
-    public void addCategory(Category category) {this.categoryRepository.save(category);}
-    public void editCategory(Category category) {this.categoryRepository.save(category);}
-    public void deleteCategory(Long id) {this.categoryRepository.deleteById(id);}
-    public List<Category> allCategory(){return categoryRepository.findAll();}
-    public Category getCategory(Long id) {return categoryRepository.getById(id);}
+    public void addCategory(Category category) {
+        this.categoryRepository.save(category);
+    }
+
+    public void editCategory(Category category) {
+        this.categoryRepository.save(category);
+    }
+
+    public void deleteCategory(Long id) {
+        this.categoryRepository.deleteById(id);
+    }
+
+    public List<Category> allCategory() {
+        return categoryRepository.findAll();
+    }
+
+    public Category getCategory(Long id) {
+        return categoryRepository.getById(id);
+    }
 }

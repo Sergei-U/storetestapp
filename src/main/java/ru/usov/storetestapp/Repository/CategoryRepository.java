@@ -1,5 +1,6 @@
 package ru.usov.storetestapp.Repository;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.usov.storetestapp.Entity.Category;
@@ -20,5 +21,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     Optional<Category> findById(Long aLong);
 
     @Override
-    void deleteById(Long aLong);
+    void deleteById(@NotNull Long aLong);
 }

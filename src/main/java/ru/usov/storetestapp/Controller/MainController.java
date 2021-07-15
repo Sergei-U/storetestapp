@@ -15,6 +15,7 @@ import java.util.HashMap;
 @Controller
 @RequestMapping("/")
 public class MainController {
+
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
 

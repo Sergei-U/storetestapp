@@ -17,10 +17,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Slf4j
 public class UserService {
-    
+
     private final UserRepository userRepository;
-
-
 
 
     public List<User> getAll() {
@@ -37,12 +35,13 @@ public class UserService {
 
     public Optional<User> findByID(String id) {
         Optional<User> result = userRepository.findById(id);
-        if(result==null){
+        if (result == null) {
             log.warn("In findById - user: {} user not found", id);
         }
         log.info("In findById - user: {} found by username", result);
         return result;
     }
+
     public void deleteUser(String id) {
         userRepository.deleteById(id);
         log.info("IN delete - user with id: {} successfully deleted");

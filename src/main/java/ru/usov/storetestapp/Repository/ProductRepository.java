@@ -1,5 +1,6 @@
 package ru.usov.storetestapp.Repository;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.usov.storetestapp.Entity.Products;
@@ -15,7 +16,7 @@ public interface ProductRepository extends JpaRepository<Products, Long> {
     @Override
     List<Products> findAll();
 
-    void deleteById(Long id);
+    void deleteById(@NotNull Long id);
 
     @Override
     Optional<Products> findById(Long id);

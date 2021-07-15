@@ -3,7 +3,6 @@ package ru.usov.storetestapp.Entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 /**
  *
