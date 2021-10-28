@@ -1,7 +1,9 @@
 package ru.usov.storetestapp.Repository;
 
 import org.jetbrains.annotations.NotNull;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ru.usov.storetestapp.Entity.Products;
 
@@ -22,5 +24,6 @@ public interface ProductRepository extends JpaRepository<Products, Long> {
     Optional<Products> findById(Long id);
 
     List<Products> findByNameOrDescription(String name, String description);
+
 
 }
