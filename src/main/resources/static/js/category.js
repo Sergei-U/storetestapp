@@ -1,5 +1,6 @@
+
 function getIndex(list, id) {
-    for (var i = 0; i < list.length; i++) {
+    for (var i = 0; i < list.length; i++ ) {
         if (list[i].id === id) {
             return i;
         }
@@ -12,7 +13,7 @@ var categoryApi = Vue.resource('/category{/id}');
 
 Vue.component('category-form', {
     props: ['categorys', 'categoryAttr'],
-    data: function () {
+    data: function() {
         return {
             name: '',
             id: '',
@@ -20,7 +21,7 @@ Vue.component('category-form', {
         }
     },
     watch: {
-        categoryAttr: function (newVal, oldVal) {
+        categoryAttr: function(newVal, oldVal) {
             this.name = newVal.name;
             this.id = newVal.id;
             this.description = newVal.description;
@@ -33,8 +34,8 @@ Vue.component('category-form', {
         '<input type="button" value="Save" @click="save" />' +
         '</div>',
     methods: {
-        save: function () {
-            var category = {name: this.name, description: this.description};
+        save: function() {
+            var category = { name: this.name, description: this.description };
 
             if (this.id) {
                 categoryApi.update({name: this.name}, {description: this.description}, category).then(result =>
@@ -69,10 +70,10 @@ Vue.component('category-row', {
         '</span>' +
         '</div>',
     methods: {
-        edit: function () {
+        edit: function() {
             this.editMethod(this.category);
         },
-        del: function () {
+        del: function() {
             categoryApi.remove({id: this.category.id}).then(result => {
                 if (result.ok) {
                     this.categorys.splice(this.categorys.indexOf(this.category), 1)
@@ -84,7 +85,7 @@ Vue.component('category-row', {
 
 Vue.component('categorys-list', {
     props: ['categorys'],
-    data: function () {
+    data: function() {
         return {
             category: null
         }
@@ -96,7 +97,7 @@ Vue.component('categorys-list', {
         ':editMethod="editMethod" :categorys="categorys" />' +
         '</div>',
     methods: {
-        editMethod: function (category) {
+        editMethod: function(category) {
             this.category = category;
         }
     }
@@ -116,7 +117,7 @@ var app = new Vue({
         categorys: frontendData.categorys,
         profile: frontendData.profile
     },
-    created: function () {
+    created: function() {
 //    categoryApi.get().then(result =>
 //        result.json().then(data =>
 //            data.forEach(category => this.categorys.push(category))

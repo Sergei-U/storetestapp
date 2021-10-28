@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -56,7 +57,7 @@ public class Products implements Serializable {
     @ApiModelProperty(value = "Список категорий товара")
     private List<Category> categories;
 
-    public static final Products EMPTY = new Products(null, null, null, 0, 0);
+    public static final Products EMPTY = new Products(null, null, null, 0,0);
 
     public Products(String name, String description, String img, int price, int quantity) {
         this.name = name;
