@@ -1,6 +1,5 @@
-
 function getIndex(list, id) {
-    for (var i = 0; i < list.length; i++ ) {
+    for (var i = 0; i < list.length; i++) {
         if (list[i].id === id) {
             return i;
         }
@@ -13,7 +12,7 @@ var productApi = Vue.resource('/product{/id}');
 
 Vue.component('product-form', {
     props: ['products', 'productAttr'],
-    data: function() {
+    data: function () {
         return {
             category: '',
             id: '',
@@ -25,7 +24,7 @@ Vue.component('product-form', {
         }
     },
     watch: {
-        productAttr: function(newVal, oldVal) {
+        productAttr: function (newVal, oldVal) {
             this.id = newVal.id;
             this.name = newVal.name;
             this.description = newVal.description;
@@ -45,8 +44,8 @@ Vue.component('product-form', {
         '<input type="button" value="Save" @click="save" />' +
         '</div>',
     methods: {
-        save: function() {
-            var product = { text: this.text };
+        save: function () {
+            var product = {text: this.text};
 
             if (this.id) {
                 productApi.update({id: this.id}, product).then(result =>
@@ -88,10 +87,10 @@ Vue.component('product-row', {
         '</span>' +
         '</div>',
     methods: {
-        edit: function() {
+        edit: function () {
             this.editMethod(this.product);
         },
-        del: function() {
+        del: function () {
             productApi.remove({id: this.product.id}).then(result => {
                 if (result.ok) {
                     this.products.splice(this.products.indexOf(this.product), 1)
@@ -103,7 +102,7 @@ Vue.component('product-row', {
 
 Vue.component('products-list', {
     props: ['products'],
-    data: function() {
+    data: function () {
         return {
             product: null
         }
@@ -115,7 +114,7 @@ Vue.component('products-list', {
         ':editMethod="editMethod" :products="products" />' +
         '</div>',
     methods: {
-        editMethod: function(product) {
+        editMethod: function (product) {
             this.product = product;
         }
     }
@@ -135,7 +134,7 @@ var app = new Vue({
         products: frontendData.products,
         profile: frontendData.profile
     },
-    created: function() {
+    created: function () {
 //    productApi.get().then(result =>
 //        result.json().then(data =>
 //            data.forEach(product => this.products.push(product))

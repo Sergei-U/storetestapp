@@ -1,0 +1,17 @@
+version: '1'
+services:
+  db:
+    container_name: store_test_app
+    image: postgres:13
+    volumes:
+      - store_test_app:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=store_test_app
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+
+volumes:
+  sample_db: { }

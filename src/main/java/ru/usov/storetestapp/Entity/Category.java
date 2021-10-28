@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -35,9 +36,11 @@ public class Category implements Serializable {
     private String description;
 
     @Column(updatable = false)
+    @CreatedDate()
+    @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonView(Views.FullCategory.class)
-    private LocalDateTime creationDate;
+    private LocalDateTime creationDateTime;
 
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Products.class)

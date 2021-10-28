@@ -27,7 +27,6 @@ public class Products implements Serializable {
     @ApiModelProperty(value = "ID product")
     private Long id;
 
-
     @Column(name = "PRODUCT_NAME", unique = true)
     @ApiModelProperty(value = "product name")
     private String name;
@@ -56,4 +55,14 @@ public class Products implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Category.class)
     @ApiModelProperty(value = "Список категорий товара")
     private List<Category> categories;
+
+    public static final Products EMPTY = new Products(null, null, null, 0, 0);
+
+    public Products(String name, String description, String img, int price, int quantity) {
+        this.name = name;
+        this.description = description;
+        this.img = img;
+        this.price = price;
+        this.quantity = quantity;
+    }
 }

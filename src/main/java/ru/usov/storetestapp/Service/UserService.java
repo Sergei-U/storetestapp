@@ -1,8 +1,7 @@
 package ru.usov.storetestapp.Service;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.usov.storetestapp.Entity.User;
 import ru.usov.storetestapp.Repository.UserRepository;
@@ -14,11 +13,15 @@ import java.util.Optional;
  *
  */
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class UserService {
 
     private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
 
     public List<User> getAll() {

@@ -1,6 +1,5 @@
 package ru.usov.storetestapp.Config;
 
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,7 +44,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 return newUser;
             });
 
-            user.setLastVisit(LocalDateTime.now());
+            user.setLastVisitDate(LocalDateTime.now());
+            user.setLastVisitTime(LocalDateTime.now());
 
             return userRepository.save(user);
         };

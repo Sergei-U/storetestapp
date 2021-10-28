@@ -14,12 +14,15 @@ import java.util.Optional;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
+    @NotNull
     @Override
     List<Category> findAll();
 
+    @NotNull
     @Override
     Optional<Category> findById(Long aLong);
 
     @Override
     void deleteById(@NotNull Long aLong);
+
 }
